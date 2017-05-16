@@ -119,8 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d8fb06d83c16f4789409132b02cf47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 2
-  m_superNova: {fileID: 114934681920748566, guid: 874e0428c8c20d64ab0997271c0ce5e8,
+  lifeTime: 3
+  damage: 1
+  superNova: {fileID: 114934681920748566, guid: 874e0428c8c20d64ab0997271c0ce5e8,
     type: 2}
 --- !u!198 &198168882260856476
 ParticleSystem:

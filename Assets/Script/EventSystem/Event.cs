@@ -3,15 +3,29 @@ using System.Collections.Generic;
 
 public class Event {
 
-    private string m_type;
+    private string name;
+    private Data data;
 
-    public Event(string type)
+    public Event(string name)
     {
-        m_type = type;
+        this.name = name;
+        this.data = new Data();
     }
 
-    public string Type
+    public Event(string name, Data data)
     {
-        get { return m_type; }
+        this.name = name;
+        this.data = data;
+    }
+
+    public string Name
+    {
+        get { return name; }
+    }
+
+    public Data Data
+    {
+        get { return data; }
+        set { data = value; }
     }
 }

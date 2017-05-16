@@ -1,30 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class Dispatcher : MonoBehaviour
 {
+    [SerializeField]
+    private String[] m_subscribedEventTypes;
+
     private EventBus m_eventBus;
     private EventReceiver m_eventReceiver;
 
     void Awake()
     {
+        m_eventBus = FindObjectOfType<EventBus>();
         m_eventReceiver = new EventReceiver();
     }
 
     void Start()
     {
-        m_eventBus = FindObjectOfType<EventBus>();
+        foreach (String evt in m_subscribedEventTypes)
+        {
+            Subscribe(evt);
+        }
     }
 
-    public void Subscribe(string evtType)
+    public void Subscribe(string evtName)
     {
-        m_eventBus.AddReceiver(evtType, m_eventReceiver);
-    }
-
-    public void TriggerEvent(string type)
-    {
-        m_eventBus.TriggerEvent(m_eventBus.GetEvent(type));
+        m_eventBus.AddReceiver(evtName, m_eventReceiver);
     }
 
     public Event ReceiveEvent()

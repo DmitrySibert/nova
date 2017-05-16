@@ -1,18 +1,20 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EventBus : MonoBehaviour {
 
+    [SerializeField]
+    private String[] m_eventTypes;
+
     private Dictionary<string, List<EventReceiver>> m_receivers;
     private Queue<Event> m_events;
-    private EventPool m_evtPool;
 
     private void Awake()
     {
         m_receivers = new Dictionary<string, List<EventReceiver>>();
         m_events = new Queue<Event>();
-        m_evtPool = new EventPool();
+        Debug.Log("EventBus initialized");
     }
 
     void Start()
@@ -25,7 +27,7 @@ public class EventBus : MonoBehaviour {
         {
             Event evt = m_events.Dequeue();
             List<EventReceiver> evtRcvrs;
-            bool res = m_receivers.TryGetValue(evt.Type, out evtRcvrs);
+            bool res = m_receivers.TryGetValue(evt.Name, out evtRcvrs);
             if (res)
             {
                 foreach (EventReceiver evtRec in evtRcvrs)
@@ -35,7 +37,7 @@ public class EventBus : MonoBehaviour {
             }
             else
             {
-                Debug.LogWarning("Trigged event without receivers.");
+                Debug.LogWarning("Trigged event without receivers: " + evt.Name);
             }
         }
     }
@@ -59,11 +61,5 @@ public class EventBus : MonoBehaviour {
     public void TriggerEvent(Event evt)
     {
         m_events.Enqueue(evt);
-        Debug.Log("Tirgged event:" + evt.Type);
-    }
-
-    public Event GetEvent(string type)
-    {
-        return m_evtPool.GetEvent(type);
     }
 }

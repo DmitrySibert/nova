@@ -9,66 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1861992937459242}
+  m_RootGameObject: {fileID: 1696421097407864}
   m_IsPrefabParent: 1
---- !u!1 &1861992937459242
+--- !u!1 &1696421097407864
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4826812391801612}
-  - component: {fileID: 212239198001762272}
-  - component: {fileID: 50674243098194326}
-  - component: {fileID: 58482396697914160}
-  - component: {fileID: 114881576097332158}
+  - component: {fileID: 4064850141043324}
+  - component: {fileID: 212679378837879708}
+  - component: {fileID: 114132980988282046}
+  - component: {fileID: 58811237996553624}
   m_Layer: 0
-  m_Name: CometSmall
+  m_Name: SingleBurstWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4826812391801612
+--- !u!4 &4064850141043324
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1861992937459242}
+  m_GameObject: {fileID: 1696421097407864}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.03, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalPosition: {x: -3.1494799, y: 1.5096759, z: 2.5517578}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50674243098194326
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1861992937459242}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!58 &58482396697914160
+--- !u!58 &58811237996553624
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1861992937459242}
+  m_GameObject: {fileID: 1696421097407864}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -76,24 +55,25 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.19999999
---- !u!114 &114881576097332158
+  m_Radius: 1
+--- !u!114 &114132980988282046
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1861992937459242}
+  m_GameObject: {fileID: 1696421097407864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d9fe8b0235a38141a1e6c87d72cc37b, type: 3}
+  m_Script: {fileID: 11500000, guid: 19b496396e1e1b74fb688a9b107d2ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &212239198001762272
+  damage: 1
+--- !u!212 &212679378837879708
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1861992937459242}
+  m_GameObject: {fileID: 1696421097407864}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -101,7 +81,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 887031b21760cdd4b92b85aaf6b750eb, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -119,7 +99,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e413a723f0ad6a442a4ba608692d3c7e, type: 3}
-  m_Color: {r: 0.75735295, g: 0.929716, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: b12b96647d1b5fd4f89b4e8ecb0cca50, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

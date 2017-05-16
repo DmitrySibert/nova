@@ -14,11 +14,13 @@ public class Wormhole : MonoBehaviour {
     private Collider2D m_collider;
     private float m_timeCount;
     private Dispatcher m_dispatcher;
+    private bool m_isActive;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         m_dispatcher = gameObject.GetComponent<Dispatcher>();
+        m_isActive = true;
     }
 	
 	// Update is called once per frame
@@ -27,9 +29,15 @@ public class Wormhole : MonoBehaviour {
         Event evt = m_dispatcher.ReceiveEvent();
         if (evt != null)
         {
-            if (evt.Type.Equals("LeftMouseUp"))
+            if (evt.Name.Equals("LeftMouseUp") && m_isActive)
             {
-
+                m_isActive = false;
+                Vector2 v2 = evt.Data.Get<Vector3>("clickPoint");
+                SpawnComet(v2);
+            }
+            if (evt.Name.Equals("PlayerTurn"))
+            {
+                m_isActive = true;
             }
         }
     }

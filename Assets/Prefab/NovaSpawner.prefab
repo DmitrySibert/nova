@@ -9,46 +9,61 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1645959479369388}
+  m_RootGameObject: {fileID: 1445888217731286}
   m_IsPrefabParent: 1
---- !u!1 &1645959479369388
+--- !u!1 &1445888217731286
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4281118433165416}
-  - component: {fileID: 114541849154448792}
+  - component: {fileID: 4007024184905060}
+  - component: {fileID: 114097881329325932}
+  - component: {fileID: 114949226395478264}
   m_Layer: 0
-  m_Name: PcController
+  m_Name: NovaSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4281118433165416
+--- !u!4 &4007024184905060
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1645959479369388}
+  m_GameObject: {fileID: 1445888217731286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -0.03044499, y: 0.2195699, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114541849154448792
+--- !u!114 &114097881329325932
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1645959479369388}
+  m_GameObject: {fileID: 1445888217731286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e77ee391912c1b641b9adeb53a8b5db1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ef658571773b5f4fa410af729133f83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameState: {fileID: 0}
+  superNova: {fileID: 114934681920748566, guid: 874e0428c8c20d64ab0997271c0ce5e8,
+    type: 2}
+--- !u!114 &114949226395478264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1445888217731286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd09ee7afa0e5c4b866919b6b2f02ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_subscribedEventTypes:
+  - CometDeath

@@ -5,12 +5,12 @@ using UnityEngine;
 public class PcController : MonoBehaviour {
 
     public GameState gameState;
-    private Dispatcher m_dispatcher;
+    private EventBus eventBus;
 
 	void Start ()
     {
         Debug.Log("PcController initialized");
-        m_dispatcher = gameObject.GetComponent<Dispatcher>();
+        eventBus = FindObjectOfType<EventBus>();
     }
 	
 	// Update is called once per frame
@@ -18,11 +18,15 @@ public class PcController : MonoBehaviour {
     {
         if (Input.GetMouseButtonUp(0))
         {
-            m_dispatcher.TriggerEvent("LeftMouseUp");
+            Data data = new Data();
+            data["clickPoint"] = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            eventBus.TriggerEvent(new Event("LeftMouseUp", data));
         }
         if (Input.GetMouseButtonUp(1))
         {
-            m_dispatcher.TriggerEvent("RightMouseUp");
+            Data data = new Data();
+            data["clickPoint"] = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            eventBus.TriggerEvent(new Event("RightMouseUp"));
         }
     }
 }
