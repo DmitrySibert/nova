@@ -23,7 +23,7 @@ public class EventReceiver {
         }
         else
         {
-            return null;
+            return Event.NewNull();
         }
     }
 }

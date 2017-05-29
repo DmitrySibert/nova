@@ -27,18 +27,15 @@ public class Wormhole : MonoBehaviour {
 	void Update ()
     {
         Event evt = m_dispatcher.ReceiveEvent();
-        if (evt != null)
+        if (evt.Name.Equals("LeftMouseUp") && m_isActive)
         {
-            if (evt.Name.Equals("LeftMouseUp") && m_isActive)
-            {
-                m_isActive = false;
-                Vector2 v2 = evt.Data.Get<Vector3>("clickPoint");
-                SpawnComet(v2);
-            }
-            if (evt.Name.Equals("PlayerTurn"))
-            {
-                m_isActive = true;
-            }
+            m_isActive = false;
+            Vector2 v2 = evt.Data.Get<Vector3>("clickPoint");
+            SpawnComet(v2);
+        }
+        if (evt.Name.Equals("PlayerTurn"))
+        {
+            m_isActive = true;
         }
     }
 

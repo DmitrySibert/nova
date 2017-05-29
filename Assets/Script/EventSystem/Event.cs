@@ -28,4 +28,9 @@ public class Event {
         get { return data; }
         set { data = value; }
     }
+
+    public static Event NewNull()
+    {
+        return NullEvent.Instance();
+    }
 }
