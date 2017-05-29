@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 50215984310513974}
   - component: {fileID: 114201128683822316}
   - component: {fileID: 114035024450851596}
+  - component: {fileID: 114959151400261114}
   m_Layer: 9
   m_Name: SuperNova
   m_TagString: Untagged
@@ -184,7 +185,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 6.24
+  m_Radius: 6.53
 --- !u!114 &114035024450851596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -262,7 +263,18 @@ MonoBehaviour:
   health: {fileID: 114240942035025008}
   singleBurstWave: {fileID: 114132980988282046, guid: 8f3c1f677bff3474fad3de084b7d20cb,
     type: 2}
-  size: 40
+  size: 10
+--- !u!114 &114959151400261114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1841427381317070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eaa7e9474852a3479482d35123d4e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212169042982979948
 SpriteRenderer:
   m_ObjectHideFlags: 1

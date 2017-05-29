@@ -68,7 +68,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4218375174750992}
   - component: {fileID: 114788226039773066}
-  - component: {fileID: 114350491684165452}
+  - component: {fileID: 114786862558361712}
+  - component: {fileID: 114644134884999256}
+  - component: {fileID: 58729434674518894}
+  - component: {fileID: 50190537561012384}
   m_Layer: 0
   m_Name: Pulsar
   m_TagString: Untagged
@@ -161,7 +164,41 @@ Transform:
   m_Father: {fileID: 4684792614439070}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114350491684165452
+--- !u!50 &50190537561012384
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887898526878642}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 6200000, guid: b750e19fe3fe5404d903cecabaf028c5, type: 2}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
+--- !u!58 &58729434674518894
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887898526878642}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.53
+--- !u!114 &114644134884999256
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -169,12 +206,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1887898526878642}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1cd09ee7afa0e5c4b866919b6b2f02ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 5
+  m_subscribedEventTypes:
+  - PlayerTurn
+--- !u!114 &114786862558361712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887898526878642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b306c681dcd17443821943851b0ea16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLife: 2
 --- !u!114 &114788226039773066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,6 +234,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53e117bbddc4474e907847f42d8279d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pulse: {fileID: 1914433573097996, guid: 097b05f4faed7644b868981a748e8f09, type: 2}
+  render: {fileID: 212186146425931272}
 --- !u!114 &114897560966610972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -235,7 +285,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3bcad5bf2fb176941af69e58f7994656, type: 3}
-  m_Color: {r: 0.39705884, g: 0.822, b: 1, a: 0.941}
+  m_Color: {r: 0, g: 0.83448267, b: 1, a: 0.922}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212186146425931272
@@ -270,7 +320,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3bcad5bf2fb176941af69e58f7994656, type: 3}
-  m_Color: {r: 0.88052726, g: 0.5441177, b: 1, a: 0.803}
+  m_Color: {r: 1, g: 0.347, b: 0.934, a: 0.722}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!212 &212853930065378802
@@ -305,6 +355,6 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3bcad5bf2fb176941af69e58f7994656, type: 3}
-  m_Color: {r: 0.7426978, g: 0.5661765, b: 1, a: 0.916}
+  m_Color: {r: 0.4896555, g: 0, b: 1, a: 0.616}
   m_FlipX: 0
   m_FlipY: 0

@@ -7,12 +7,7 @@ public class SingleBurstWave : MonoBehaviour {
     [SerializeField]
     private int damage;
 
-	void Start ()
-    {
-		
-	}
-
-    void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         Damageable damageable = collider.gameObject.GetComponent<Damageable>();
         if (damageable != null)
