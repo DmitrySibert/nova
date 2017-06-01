@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour {
 
-    [SerializeField]
-    private SuperNova superNova;
-
     private Dispatcher dispatcher;
     private EventBus eventBus;
     private IEnumerator playerTurn;
@@ -37,11 +34,5 @@ public class GameState : MonoBehaviour {
     {
         yield return new WaitForSeconds(intervalSec);
         eventBus.TriggerEvent(new Event("PlayerTurn"));
-    }
-
-    public void SpawnSuperNova(Vector2 pos)
-    {
-        superNova.size = Random.Range(1, 5) * 10;
-        Instantiate<SuperNova>(superNova, pos, Quaternion.identity);
     }
 }

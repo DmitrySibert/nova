@@ -25,6 +25,6 @@ public class NovaSpawner : MonoBehaviour {
 
     private void SpawnNova(Vector3 position)
     {
-        SuperNova go = Instantiate<SuperNova>(superNova, position, Quaternion.identity);
+        Instantiate<SuperNova>(superNova, position, Quaternion.identity);
     }
 }
