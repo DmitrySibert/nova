@@ -52,6 +52,7 @@ public class SuperNova : MonoBehaviour {
         LimitedSizeExtend extend = burstWave.gameObject.AddComponent<LimitedSizeExtend>();
         extend.limit = render.bounds.size * 2;
         extend.extendFreqSec = 2;
+        eventBus.TriggerEvent(new Event("SupernovaDeath"));
         Destroy(gameObject);
     }
 }

@@ -7,27 +7,65 @@ public class GameState : MonoBehaviour {
     private Dispatcher dispatcher;
     private EventBus eventBus;
     private IEnumerator playerTurn;
+    private bool isPlayerTurnTimerOn;
+
+    delegate void EventHandler(Data data);
+    private Dictionary<string, EventHandler> eventHandlers;
 
 	// Use this for initialization
-	void Start ()
+	private void Start ()
     {
-        Debug.Log("GameState initialized");
         dispatcher = gameObject.GetComponent<Dispatcher>();
+        eventHandlers = new Dictionary<string, EventHandler>();
+        InitEventHandlers();
         eventBus = FindObjectOfType<EventBus>();
+        playerTurn = PlayerTurn(1f);
+        isPlayerTurnTimerOn = false;
+    }
+
+    private void InitEventHandlers()
+    {
+        eventHandlers["NullEvent"] = (data) => { };
+        eventHandlers["SupernovaBirth"] = SupernovaBirthHandler;
+        eventHandlers["SupernovaDeath"] = SupernovaDeathHandler;
+        eventHandlers["BlackholeBirth"] = BlackholeBirthHandler;
+        eventHandlers["PulsarBirth"] = PulsarBirthHandler;
     }
 	
-	// Update is called once per frame
-	void Update ()
+	private void Update ()
     {
         Event evt = dispatcher.ReceiveEvent();
-        if (evt != null)
-        {
-            if (evt.Name.Equals("SupernovaBirth"))
-            {
-                playerTurn = PlayerTurn(1f);
-                StartCoroutine(playerTurn);
-            }
+        eventHandlers[evt.Name].Invoke(evt.Data);
+    }
+
+    private void SupernovaBirthHandler(Data data)
+    {
+        StartPlayerTurnTimer();
+    }
+
+    private void SupernovaDeathHandler(Data data)
+    {
+        if (isPlayerTurnTimerOn) {
+            StartPlayerTurnTimer();
         }
+    }
+
+    private void BlackholeBirthHandler(Data data)
+    {
+        StartPlayerTurnTimer();
+    }
+
+    private void PulsarBirthHandler(Data data)
+    {
+        StartPlayerTurnTimer();
+    }
+
+    private void StartPlayerTurnTimer()
+    {
+        isPlayerTurnTimerOn = true;
+        StopCoroutine(playerTurn);
+        playerTurn = PlayerTurn(1f);
+        StartCoroutine(playerTurn);
     }
 
     private IEnumerator PlayerTurn(float intervalSec)

@@ -18,7 +18,8 @@ public class Pulsar : MonoBehaviour {
         trans = gameObject.GetComponent<Transform>();
         dispatcher = gameObject.GetComponent<Dispatcher>();
         health = gameObject.GetComponent<DiscreteHealthScore>();
-	}
+        FindObjectOfType<EventBus>().TriggerEvent(new Event("PulsarBirth"));
+    }
 	
 	void Update ()
     {
@@ -49,6 +50,7 @@ public class Pulsar : MonoBehaviour {
 
     private void Death()
     {
+        FindObjectOfType<EventBus>().TriggerEvent(new Event("PulsarDeath"));
         Destroy(gameObject);
     }
 }
