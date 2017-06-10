@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 114644134884999256}
   - component: {fileID: 58729434674518894}
   - component: {fileID: 50190537561012384}
+  - component: {fileID: 114808404560525362}
   m_Layer: 0
   m_Name: Pulsar
   m_TagString: Untagged
@@ -116,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 1887898526878642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children:
   - {fileID: 4684792614439070}
   m_Father: {fileID: 0}
@@ -236,6 +237,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pulse: {fileID: 1914433573097996, guid: 097b05f4faed7644b868981a748e8f09, type: 2}
   render: {fileID: 212186146425931272}
+--- !u!114 &114808404560525362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887898526878642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9bb477f87dd4149b6cf00f89777131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scalePerSecond: 1
 --- !u!114 &114897560966610972
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -52,8 +52,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef658571773b5f4fa410af729133f83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  superNova: {fileID: 114934681920748566, guid: 874e0428c8c20d64ab0997271c0ce5e8,
-    type: 2}
+  objectsForSpawn:
+  - {fileID: 1841427381317070, guid: 874e0428c8c20d64ab0997271c0ce5e8, type: 2}
+  - {fileID: 1887898526878642, guid: 0f3297dc061f6a5449d443292b399cd6, type: 2}
+  - {fileID: 1682935174189884, guid: 44cc457b860379142b38d49ed7563193, type: 2}
+  objectsSpawnVariance:
+  - 0.7
+  - 0.2
+  - 0.1
 --- !u!114 &114949226395478264
 MonoBehaviour:
   m_ObjectHideFlags: 1
