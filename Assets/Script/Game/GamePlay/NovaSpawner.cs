@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GamePlay {
+namespace GamePlay
+{
     using RightExclusiveRange = List<float>;
 
     public class NovaSpawner : MonoBehaviour {
