@@ -10,18 +10,15 @@ public class GameZoneBarrier : MonoBehaviour {
 	void Start ()
     {
         dispatcher = gameObject.GetComponent<Dispatcher>();
-        col = gameObject.GetComponent<Collider2D>();
+        col = gameObject.GetComponent<PolygonCollider2D>();
     }
 	
 	void Update ()
     {
         Event evt = dispatcher.ReceiveEvent();
-        if (evt != null)
+        if (evt.Name.Equals("PlayerTurn"))
         {
-            if (evt.Name.Equals("PlayerTurn"))
-            {
-                col.isTrigger = true;
-            }
+            col.isTrigger = true;
         }
 	}
 

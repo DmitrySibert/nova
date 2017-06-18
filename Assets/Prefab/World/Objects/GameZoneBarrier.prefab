@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4589979818871050}
   - component: {fileID: 114531087085981550}
   - component: {fileID: 114980136981502334}
-  - component: {fileID: 61086465823573158}
   - component: {fileID: 50908393366050778}
+  - component: {fileID: 60980438582378600}
   m_Layer: 0
   m_Name: GameZoneBarrier
   m_TagString: Untagged
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1098965227031028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03044499, y: 0.2195699, z: 0}
+  m_LocalPosition: {x: -8.12, y: 0.2195699, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,7 +51,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1098965227031028}
   m_BodyType: 2
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -63,8 +63,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61086465823573158
-BoxCollider2D:
+--- !u!60 &60980438582378600
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -72,11 +72,33 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.78, y: 5.58}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 1}
+      - {x: -4.7261868, y: 0.36893988}
+      - {x: -4.594323, y: -9.465289}
+      - {x: -4.5826273, y: -11.600901}
+      - {x: 20.022535, y: -11.59086}
+      - {x: 20.045553, y: -9.661979}
+      - {x: 1.5993936, y: -9.677576}
+      - {x: 1.6663935, y: -1.9475482}
+      - {x: 15.934878, y: -1.8544035}
+      - {x: 16.00551, y: -9.554182}
+      - {x: 20.113585, y: -9.552919}
+      - {x: 19.587015, y: -0.020556927}
 --- !u!114 &114531087085981550
 MonoBehaviour:
   m_ObjectHideFlags: 1

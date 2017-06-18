@@ -24,8 +24,6 @@ namespace GamePlay
             float rangeLeftTangent = 0;
             for (uint i = 0; i < objectsSpawnVariance.Length; ++i) {
                 RightExclusiveRange range = new RightExclusiveRange(2);
-                //range[0] = rangeLeftTangent;
-                //range[1] = rangeLeftTangent + objectsSpawnVariance[i];
                 range.Add(rangeLeftTangent);
                 range.Add(rangeLeftTangent + objectsSpawnVariance[i]);
                 objectsVarianceRange[range] = objectsForSpawn[i];

@@ -29,5 +29,11 @@ public class PcController : MonoBehaviour {
         if (Input.GetKeyUp("space")) {
             eventBus.TriggerEvent(new Event("SpaceUp"));
         }
+        if (Input.GetKeyUp("left")) {
+            eventBus.TriggerEvent(new Event("LeftArrowUp"));
+        }
+        if (Input.GetKeyUp("right")) {
+            eventBus.TriggerEvent(new Event("RightArrowUp"));
+        }
     }
 }

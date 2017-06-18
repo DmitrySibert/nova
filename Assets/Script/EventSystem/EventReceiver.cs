@@ -15,6 +15,11 @@ public class EventReceiver {
         m_events.Enqueue(e);
     }
 
+    public void Clear()
+    {
+        m_events.Clear();
+    }
+
     public Event Get()
     {
         if (m_events.Count > 0)

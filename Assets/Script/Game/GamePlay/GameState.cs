@@ -21,6 +21,7 @@ public class GameState : MonoBehaviour {
         eventBus = FindObjectOfType<EventBus>();
         playerTurn = PlayerTurn(1f);
         isPlayerTurnTimerOn = false;
+        eventBus.TriggerEvent(new Event("PlayerTurn"));
     }
 
     private void InitEventHandlers()

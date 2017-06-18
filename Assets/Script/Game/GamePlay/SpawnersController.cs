@@ -14,6 +14,7 @@ namespace GamePlay
         private Dictionary<string, EventHandler> eventHandlers;
 
         private int curActiveSpawnerIdx;
+        private int lastActiveSpawnerIdx;
 
         void Start()
         {
@@ -31,28 +32,26 @@ namespace GamePlay
         private void InitEventHandlers()
         {
             eventHandlers["NullEvent"] = () => { };
-            eventHandlers["Space"] = ActivateSpawnerChoice;
+            eventHandlers["PlayerTurn"] = StartPlayerTurn;
+            eventHandlers["LeftMouseUp"] = () => { };
         }
 
-        void Update()
+        private void Update()
         {
             Event evt = dispatcher.ReceiveEvent();
             eventHandlers[evt.Name].Invoke();
         }
 
-        void ActivateSpawnerChoice()
+        private void StartChoosingSpawner()
         {
-            eventHandlers["Space"] = StartChoosingSpawner;
-        }
-
-        void StartChoosingSpawner()
-        {
+            lastActiveSpawnerIdx = curActiveSpawnerIdx;
             eventHandlers["RightArrowUp"] = SetNextSpawner;
             eventHandlers["LeftArrowUp"] = SetPrevSpawner;
-            eventHandlers["Space"] = EndChoosingSpawner;
+            eventHandlers["SpaceUp"] = EndChoosingSpawner;
+            eventHandlers["LeftMouseUp"] = EndChoosingSpawner;
         }
 
-        void SetNextSpawner()
+        private void SetNextSpawner()
         {
             spawners[curActiveSpawnerIdx].SetActive(false);
             if (curActiveSpawnerIdx < spawners.Length - 1) {
@@ -63,7 +62,7 @@ namespace GamePlay
             spawners[curActiveSpawnerIdx].SetActive(true);
         }
 
-        void SetPrevSpawner()
+        private void SetPrevSpawner()
         {
             spawners[curActiveSpawnerIdx].SetActive(false);
             if (curActiveSpawnerIdx > 0) {
@@ -74,11 +73,21 @@ namespace GamePlay
             spawners[curActiveSpawnerIdx].SetActive(true);
         }
 
-        void EndChoosingSpawner()
+        private void EndChoosingSpawner()
         {
-            eventHandlers["Space"] = StartChoosingSpawner;
-            eventHandlers.Remove("RightArrowUp");
-            eventHandlers.Remove("LeftArrowUp");
+            eventHandlers["SpaceUp"] = () => { };
+            eventHandlers["RightArrowUp"] = () => { };
+            eventHandlers["LeftArrowUp"] = () => { };
+            eventHandlers["PlayerTurn"] = StartPlayerTurn;
+            Data data = new Data();
+            data["PrevSpawnerNumber"] = lastActiveSpawnerIdx;
+            FindObjectOfType<EventBus>().TriggerEvent(new Event("SpawnerChoosen", data));
         }
+
+        private void StartPlayerTurn()
+        {
+            eventHandlers["SpaceUp"] = StartChoosingSpawner;
+        }
+
     }
 }

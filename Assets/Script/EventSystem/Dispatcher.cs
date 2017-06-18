@@ -4,7 +4,7 @@ using UnityEngine;
 public class Dispatcher : MonoBehaviour
 {
     [SerializeField]
-    private String[] m_subscribedEventTypes;
+    private string[] m_subscribedEventTypes;
 
     private EventBus m_eventBus;
     private EventReceiver m_eventReceiver;
@@ -17,10 +17,14 @@ public class Dispatcher : MonoBehaviour
 
     void Start()
     {
-        foreach (String evt in m_subscribedEventTypes)
-        {
+        foreach (string evt in m_subscribedEventTypes) {
             Subscribe(evt);
         }
+    }
+
+    private void OnEnable()
+    {
+        m_eventReceiver.Clear();
     }
 
     public void Subscribe(string evtName)
