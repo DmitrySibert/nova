@@ -81,6 +81,7 @@ namespace GamePlay
             eventHandlers["PlayerTurn"] = StartPlayerTurn;
             Data data = new Data();
             data["PrevSpawnerNumber"] = lastActiveSpawnerIdx;
+            data["CurrentSpawnerNumber"] = curActiveSpawnerIdx;
             FindObjectOfType<EventBus>().TriggerEvent(new Event("SpawnerChoosen", data));
         }
 
