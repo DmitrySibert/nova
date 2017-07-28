@@ -5,7 +5,7 @@ using UnityEngine;
 public class BarrierController : MonoBehaviour {
 
     [SerializeField]
-    private GameObject[] barriers;
+    private Barrier[] barriers;
 
     private Dispatcher dispatcher;
 
@@ -18,12 +18,13 @@ public class BarrierController : MonoBehaviour {
     {
         Event evt = dispatcher.ReceiveEvent();
         if (evt.Name.Equals("SpawnerChoosen")) {
-            foreach (GameObject barrier in barriers) {
+            foreach (Barrier barrier in barriers) {
+                barrier.IsDeathTouchEnable = false;
             }
             int prevBarrierIdx = evt.Data.Get<int>("PrevSpawnerNumber");
             int curBarrierIdx = evt.Data.Get<int>("CurrentSpawnerNumber");
-            barriers[prevBarrierIdx].SetActive(true);
-            barriers[curBarrierIdx].SetActive(true);
+            barriers[prevBarrierIdx].IsDeathTouchEnable = true;
+            barriers[curBarrierIdx].IsDeathTouchEnable = true;
         }
 
 	}

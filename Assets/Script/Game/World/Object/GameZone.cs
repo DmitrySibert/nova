@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameZoneBarrier : MonoBehaviour {
+public class GameZone : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D collider)
     {

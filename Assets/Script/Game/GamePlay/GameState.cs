@@ -31,6 +31,7 @@ public class GameState : MonoBehaviour {
         eventHandlers["SupernovaDeath"] = SupernovaDeathHandler;
         eventHandlers["BlackholeBirth"] = BlackholeBirthHandler;
         eventHandlers["PulsarBirth"] = PulsarBirthHandler;
+        eventHandlers["DeathBarrierTouch"] = OnDeathBarrierTouch;
     }
 	
 	private void Update ()
@@ -67,6 +68,11 @@ public class GameState : MonoBehaviour {
         StopCoroutine(playerTurn);
         playerTurn = PlayerTurn(1f);
         StartCoroutine(playerTurn);
+    }
+
+    private void OnDeathBarrierTouch(Data data)
+    {
+        Debug.LogError("GAME OVER");
     }
 
     private IEnumerator PlayerTurn(float intervalSec)
