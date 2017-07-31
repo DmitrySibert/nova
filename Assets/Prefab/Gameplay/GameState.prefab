@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06857c406cfc51048845d65acbafc5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  singleScoreVal: 1
 --- !u!114 &114769743457807498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,3 +69,4 @@ MonoBehaviour:
   - BlackholeBirth
   - PulsarBirth
   - DeathBarrierTouch
+  - SupernovaDeath

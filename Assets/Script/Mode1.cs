@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Assets.Script.Game.GamePlay.Score;
 
 public class Mode1 : MonoBehaviour {
 
@@ -8,10 +9,11 @@ public class Mode1 : MonoBehaviour {
     private GameState gameStatePref;
     [SerializeField]
     private PcController pcControllerPref;
-    // Use this for initialization
-    void Start () {
+    
 
+    private void Start () {
         GameState gameState = Instantiate<GameState>(gameStatePref);
+        gameState.ScoreCalculator = new ComboScoreCalculator();
         PcController pcCont = Instantiate<PcController>(pcControllerPref);
         pcCont.gameState = gameState;
     }

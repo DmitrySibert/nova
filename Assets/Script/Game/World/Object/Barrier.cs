@@ -33,9 +33,12 @@ public class Barrier : MonoBehaviour {
     delegate void EventHandler();
     private Dictionary<string, EventHandler> eventHandlers;
 
+    private Collider2D collider2D;
+
     private void Start ()
     {
         eventBus = FindObjectOfType<EventBus>();
+        collider2D = GetComponent<Collider2D>();
         dispatcher = GetComponent<Dispatcher>();
         if (isDeathTouchEnable) {
             renderer.material.color = deathTouchColor;
@@ -50,6 +53,7 @@ public class Barrier : MonoBehaviour {
         eventHandlers = new Dictionary<string, EventHandler>();
         eventHandlers["NullEvent"] = () => { };
         eventHandlers["WentThrowBarrier"] = OnWentThrowBarrier;
+        eventHandlers["PlayerTurn"] = OnPlayerTurn;
     }
 	
 	private void Update ()
@@ -65,8 +69,12 @@ public class Barrier : MonoBehaviour {
 
     private void OnWentThrowBarrier()
     {
-        Collider2D collider = GetComponent<Collider2D>();
-        collider.isTrigger = false;
+        collider2D.isTrigger = false;
+    }
+
+    private void OnPlayerTurn()
+    {
+        collider2D.isTrigger = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

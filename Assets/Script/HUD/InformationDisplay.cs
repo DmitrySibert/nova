@@ -12,6 +12,9 @@ public class InformationDisplay : MonoBehaviour {
     [SerializeField]
     private Text nextSpawnObjName;
 
+    [SerializeField]
+    private Text scoresText;
+
     private Dispatcher dispatcher;
     private Dictionary<GameObject, string> objectNames;
 
@@ -32,5 +35,9 @@ public class InformationDisplay : MonoBehaviour {
             string name = objectNames[spawn];
             nextSpawnObjName.text = objectNames[spawn];
         }
-	}
+        if (evt.Name.Equals("ScoresUpdated")) {
+            float scores = evt.Data.Get<float>("Scores");
+            scoresText.text = scores.ToString("0");
+        }
+    }
 }
