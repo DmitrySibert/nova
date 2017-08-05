@@ -71,5 +71,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd09ee7afa0e5c4b866919b6b2f02ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_subscribedEventTypes:
+  subscribedEventNames:
   - CometDeath

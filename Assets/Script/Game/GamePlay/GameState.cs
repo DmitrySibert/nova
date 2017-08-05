@@ -86,7 +86,9 @@ public class GameState : MonoBehaviour {
 
     private void OnDeathBarrierTouch(Data data)
     {
-        Debug.LogError("GAME OVER");
+        Data gameOverData = new Data();
+        gameOverData["Scores"] = curScores;
+        eventBus.TriggerEvent(new Event("GameOver", gameOverData));
     }
 
     private void SendScoresUpdatedMsg()

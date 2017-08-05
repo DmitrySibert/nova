@@ -268,8 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd09ee7afa0e5c4b866919b6b2f02ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_subscribedEventTypes:
-  - PlayerTurn
+  subscribedEventNames: []
 --- !u!114 &136520072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,8 +324,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd09ee7afa0e5c4b866919b6b2f02ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_subscribedEventTypes:
+  subscribedEventNames:
   - WentThrowBarrier
+  - PlayerTurn
 --- !u!61 &157366370
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -388,69 +388,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1573392384407612, guid: f116e2b132a42314abeb1b7f05ae98d8,
     type: 2}
   m_PrefabInternal: {fileID: 1440194607}
---- !u!1 &336889132
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 336889134}
-  - component: {fileID: 336889133}
-  - component: {fileID: 336889135}
-  m_Layer: 0
-  m_Name: SpawnersController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &336889133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 336889132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57bf072aaa84c4540bcc14309cb097d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawners:
-  - {fileID: 1913704013}
-  - {fileID: 280948136}
-  - {fileID: 1118386500}
-  - {fileID: 1749694297}
---- !u!4 &336889134
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 336889132}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03044499, y: 0.2195699, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &336889135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 336889132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cd09ee7afa0e5c4b866919b6b2f02ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_subscribedEventTypes:
-  - SpaceUp
-  - RightArrowUp
-  - LeftArrowUp
-  - LeftMouseUp
-  - PlayerTurn
 --- !u!1 &633194161
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,8 +473,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd09ee7afa0e5c4b866919b6b2f02ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_subscribedEventTypes:
+  subscribedEventNames:
   - WentThrowBarrier
+  - PlayerTurn
 --- !u!1001 &889920891
 Prefab:
   m_ObjectHideFlags: 0
@@ -632,7 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd09ee7afa0e5c4b866919b6b2f02ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_subscribedEventTypes:
+  subscribedEventNames:
   - SpawnerChoosen
 --- !u!4 &1033268468
 Transform:
@@ -744,6 +682,68 @@ GameObject:
   m_PrefabParentObject: {fileID: 1573392384407612, guid: f116e2b132a42314abeb1b7f05ae98d8,
     type: 2}
   m_PrefabInternal: {fileID: 1051985138}
+--- !u!1001 &1136225063
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4504775174124294, guid: fea2833df4fc40849ac88ab6f8b7a9d1, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.03044499
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504775174124294, guid: fea2833df4fc40849ac88ab6f8b7a9d1, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.2195699
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504775174124294, guid: fea2833df4fc40849ac88ab6f8b7a9d1, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504775174124294, guid: fea2833df4fc40849ac88ab6f8b7a9d1, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504775174124294, guid: fea2833df4fc40849ac88ab6f8b7a9d1, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504775174124294, guid: fea2833df4fc40849ac88ab6f8b7a9d1, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504775174124294, guid: fea2833df4fc40849ac88ab6f8b7a9d1, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4504775174124294, guid: fea2833df4fc40849ac88ab6f8b7a9d1, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114029366264027056, guid: fea2833df4fc40849ac88ab6f8b7a9d1,
+        type: 2}
+      propertyPath: spawners.Array.data[0]
+      value: 
+      objectReference: {fileID: 1913704013}
+    - target: {fileID: 114029366264027056, guid: fea2833df4fc40849ac88ab6f8b7a9d1,
+        type: 2}
+      propertyPath: spawners.Array.data[1]
+      value: 
+      objectReference: {fileID: 280948136}
+    - target: {fileID: 114029366264027056, guid: fea2833df4fc40849ac88ab6f8b7a9d1,
+        type: 2}
+      propertyPath: spawners.Array.data[2]
+      value: 
+      objectReference: {fileID: 1118386500}
+    - target: {fileID: 114029366264027056, guid: fea2833df4fc40849ac88ab6f8b7a9d1,
+        type: 2}
+      propertyPath: spawners.Array.data[3]
+      value: 
+      objectReference: {fileID: 1749694297}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: fea2833df4fc40849ac88ab6f8b7a9d1, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1342704636
 Prefab:
   m_ObjectHideFlags: 0
@@ -869,8 +869,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd09ee7afa0e5c4b866919b6b2f02ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_subscribedEventTypes:
+  subscribedEventNames:
   - WentThrowBarrier
+  - PlayerTurn
 --- !u!61 &1459340346
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1335,7 +1336,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2009581030}
   - component: {fileID: 2009581031}
-  - component: {fileID: 2009581032}
   m_Layer: 0
   m_Name: Mode1
   m_TagString: Untagged
@@ -1371,23 +1371,6 @@ MonoBehaviour:
     type: 2}
   pcControllerPref: {fileID: 114541849154448792, guid: 5e8973fa8d680694aa412e22344b7dbd,
     type: 2}
---- !u!114 &2009581032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2009581029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39d0a5ffad2db1744b6ed1c6b6795954, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_eventTypes:
-  - LeftMouseUp
-  - RightMouseUp
-  - SupernovaShoot
-  - SupernovaBirth
-  - PlayerTurn
 --- !u!1 &2025950884
 GameObject:
   m_ObjectHideFlags: 0
@@ -1632,6 +1615,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd09ee7afa0e5c4b866919b6b2f02ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_subscribedEventTypes:
+  subscribedEventNames:
   - WentThrowBarrier
   - PlayerTurn
