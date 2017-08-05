@@ -4,36 +4,38 @@ using UnityEngine;
 public class Dispatcher : MonoBehaviour
 {
     [SerializeField]
-    private string[] m_subscribedEventTypes;
+    private string[] subscribedEventNames;
 
-    private EventBus m_eventBus;
-    private EventReceiver m_eventReceiver;
+    private EventBus eventBus;
+    private EventReceiver eventReceiver;
 
     void Awake()
     {
-        m_eventBus = FindObjectOfType<EventBus>();
-        m_eventReceiver = new EventReceiver();
+        eventBus = FindObjectOfType<EventBus>();
+        eventReceiver = new EventReceiver();
     }
 
     void Start()
     {
-        foreach (string evt in m_subscribedEventTypes) {
-            Subscribe(evt);
+        foreach (string evtName in subscribedEventNames) {
+            eventBus.AddReceiver(evtName, eventReceiver);
         }
     }
 
     private void OnEnable()
     {
-        m_eventReceiver.Clear();
-    }
-
-    public void Subscribe(string evtName)
-    {
-        m_eventBus.AddReceiver(evtName, m_eventReceiver);
+        eventReceiver.Clear();
     }
 
     public Event ReceiveEvent()
     {
-        return m_eventReceiver.Get();
+        return eventReceiver.Get();
+    }
+
+    private void OnDestroy()
+    {
+        foreach (string evtName in subscribedEventNames) {
+            eventBus.RemoveReceiver(evtName, eventReceiver);
+        }
     }
 }
