@@ -33,7 +33,10 @@ namespace GamePlay
         {
             eventHandlers["NullEvent"] = () => { };
             eventHandlers["PlayerTurn"] = StartPlayerTurn;
+            eventHandlers["PlayerTurnEnd"] = OnPlayerTurnEnd;
             eventHandlers["LeftMouseUp"] = () => { };
+            eventHandlers["RightArrowUp"] = () => { };
+            eventHandlers["LeftArrowUp"] = () => { };
         }
 
         private void Update()
@@ -44,11 +47,12 @@ namespace GamePlay
 
         private void StartChoosingSpawner()
         {
+            FindObjectOfType<EventBus>().TriggerEvent(new Event("StartSpawnerChoice"));
             lastActiveSpawnerIdx = curActiveSpawnerIdx;
             eventHandlers["RightArrowUp"] = SetNextSpawner;
             eventHandlers["LeftArrowUp"] = SetPrevSpawner;
             eventHandlers["SpaceUp"] = EndChoosingSpawner;
-            eventHandlers["LeftMouseUp"] = EndChoosingSpawner;
+            eventHandlers["PlayerTurnEnd"] = EndChoosingSpawner;
         }
 
         private void SetNextSpawner()
@@ -90,5 +94,9 @@ namespace GamePlay
             eventHandlers["SpaceUp"] = StartChoosingSpawner;
         }
 
+        private void OnPlayerTurnEnd()
+        {
+            eventHandlers["SpaceUp"] = () => { };
+        }
     }
 }

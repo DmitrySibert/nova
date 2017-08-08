@@ -72,5 +72,6 @@ MonoBehaviour:
   - PlayerTurn
   - LeftMouseUp
   - RightArrowUp
+  - PlayerTurnEnd
   - LeftArrowUp
   - SpaceUp

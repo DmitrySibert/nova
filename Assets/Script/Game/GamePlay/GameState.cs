@@ -22,7 +22,6 @@ public class GameState : MonoBehaviour {
     [SerializeField]
     private float singleScoreVal;
 
-	// Use this for initialization
 	private void Start ()
     {
         dispatcher = gameObject.GetComponent<Dispatcher>();
@@ -40,6 +39,7 @@ public class GameState : MonoBehaviour {
     private void InitEventHandlers()
     {
         eventHandlers["NullEvent"] = (data) => { };
+        eventHandlers["LeftMouseUp"] = OnLeftMouseUp;
         eventHandlers["SupernovaBirth"] = SupernovaBirthHandler;
         eventHandlers["SupernovaDeath"] = SupernovaDeathHandler;
         eventHandlers["BlackholeBirth"] = BlackholeBirthHandler;
@@ -76,6 +76,12 @@ public class GameState : MonoBehaviour {
         StartPlayerTurnTimer();
     }
 
+    private void OnLeftMouseUp(Data data)
+    {
+        eventBus.TriggerEvent(new Event("PlayerTurnEnd"));
+        eventHandlers["LeftMouseUp"] = (dataParam) => { };
+    }
+
     private void StartPlayerTurnTimer()
     {
         isPlayerTurnTimerOn = true;
@@ -102,6 +108,7 @@ public class GameState : MonoBehaviour {
     {
         yield return new WaitForSeconds(intervalSec);
         eventBus.TriggerEvent(new Event("PlayerTurn"));
+        eventHandlers["LeftMouseUp"] = OnLeftMouseUp;
         curScores += scoreCalculator.End();
         SendScoresUpdatedMsg();
         scoreCalculator.Start();
