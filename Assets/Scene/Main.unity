@@ -572,6 +572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subscribedEventNames:
   - SpawnerChoosen
+  - PlayerTurn
 --- !u!4 &1033268468
 Transform:
   m_ObjectHideFlags: 0

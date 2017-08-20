@@ -18,7 +18,6 @@ public class Blackhole : MonoBehaviour {
         trans = GetComponent<Transform>();
         novas = new LinkedList<SuperNova>();
         isSwallowingProceed = false;
-        FindObjectOfType<EventBus>().TriggerEvent(new Event("BlackholeBirth"));
     }
 
     private void Update()
@@ -26,6 +25,7 @@ public class Blackhole : MonoBehaviour {
         if (isSwallowingProceed) {
             if (IsSwallowingEndUp()) {
                 Death();
+                isSwallowingProceed = false;
             }
         }
     }
@@ -52,9 +52,6 @@ public class Blackhole : MonoBehaviour {
                 InitSwallow(nova);
             }
         }
-        Data data = new Data();
-        data["quantity"] = novas.Length;
-        FindObjectOfType<EventBus>().TriggerEvent(new Event("BlackholeSwallow", data));
     }
 
     private void InitSwallow(SuperNova nova)

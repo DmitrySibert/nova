@@ -27,15 +27,18 @@ public class Dispatcher : MonoBehaviour
         eventReceiver.Clear();
     }
 
-    public Event ReceiveEvent()
-    {
-        return eventReceiver.Get();
-    }
-
     private void OnDestroy()
     {
         foreach (string evtName in subscribedEventNames) {
             eventBus.RemoveReceiver(evtName, eventReceiver);
         }
     }
+
+    public Event ReceiveEvent()
+    {
+        return eventReceiver.Get();
+    }
+
 }
+
+    

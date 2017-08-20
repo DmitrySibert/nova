@@ -83,6 +83,7 @@ namespace GamePlay
             eventHandlers["RightArrowUp"] = () => { };
             eventHandlers["LeftArrowUp"] = () => { };
             eventHandlers["PlayerTurn"] = StartPlayerTurn;
+            eventHandlers["PlayerTurnEnd"] = OnPlayerTurnEnd;
             Data data = new Data();
             data["PrevSpawnerNumber"] = lastActiveSpawnerIdx;
             data["CurrentSpawnerNumber"] = curActiveSpawnerIdx;

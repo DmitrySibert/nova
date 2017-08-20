@@ -42,7 +42,7 @@ public class GameState : MonoBehaviour {
         eventHandlers["LeftMouseUp"] = OnLeftMouseUp;
         eventHandlers["SupernovaBirth"] = SupernovaBirthHandler;
         eventHandlers["SupernovaDeath"] = SupernovaDeathHandler;
-        eventHandlers["BlackholeBirth"] = BlackholeBirthHandler;
+        eventHandlers["BlackholeDeath"] = BlackholeDeathHandler;
         eventHandlers["PulsarBirth"] = PulsarBirthHandler;
         eventHandlers["DeathBarrierTouch"] = OnDeathBarrierTouch;
     }
@@ -66,7 +66,7 @@ public class GameState : MonoBehaviour {
         }
     }
 
-    private void BlackholeBirthHandler(Data data)
+    private void BlackholeDeathHandler(Data data)
     {
         StartPlayerTurnTimer();
     }

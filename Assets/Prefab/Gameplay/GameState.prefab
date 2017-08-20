@@ -67,7 +67,7 @@ MonoBehaviour:
   subscribedEventNames:
   - SupernovaBirth
   - SupernovaDeath
-  - BlackholeBirth
+  - BlackholeDeath
   - PulsarBirth
   - DeathBarrierTouch
   - LeftMouseUp
