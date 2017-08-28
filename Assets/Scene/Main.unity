@@ -366,7 +366,7 @@ MonoBehaviour:
   objectForDeathReaction: {fileID: 1073255182700446, guid: 2b0f9df730683f44b8f2e6999f6d3679,
     type: 2}
   isDeathTouchEnable: 0
-  renderer: {fileID: 1550478173}
+  render: {fileID: 1550478173}
   commonColor: {r: 0.9632353, g: 0.9908722, b: 1, a: 1}
   deathTouchColor: {r: 1, g: 0.70000005, b: 0.25, a: 1}
 --- !u!4 &157366372
@@ -445,7 +445,7 @@ MonoBehaviour:
   objectForDeathReaction: {fileID: 1073255182700446, guid: 2b0f9df730683f44b8f2e6999f6d3679,
     type: 2}
   isDeathTouchEnable: 0
-  renderer: {fileID: 2025950886}
+  render: {fileID: 2025950886}
   commonColor: {r: 0.9632353, g: 0.9908722, b: 1, a: 1}
   deathTouchColor: {r: 1, g: 0.70000005, b: 0.25, a: 1}
 --- !u!4 &633194164
@@ -1000,7 +1000,7 @@ MonoBehaviour:
   objectForDeathReaction: {fileID: 1073255182700446, guid: 2b0f9df730683f44b8f2e6999f6d3679,
     type: 2}
   isDeathTouchEnable: 0
-  renderer: {fileID: 115074323}
+  render: {fileID: 115074323}
   commonColor: {r: 0.9632353, g: 0.9908722, b: 1, a: 1}
   deathTouchColor: {r: 1, g: 0.70000005, b: 0.25, a: 1}
 --- !u!4 &1459340348
@@ -1753,7 +1753,7 @@ MonoBehaviour:
   objectForDeathReaction: {fileID: 1073255182700446, guid: 2b0f9df730683f44b8f2e6999f6d3679,
     type: 2}
   isDeathTouchEnable: 1
-  renderer: {fileID: 1726405521}
+  render: {fileID: 1726405521}
   commonColor: {r: 0.9632353, g: 0.9908722, b: 1, a: 1}
   deathTouchColor: {r: 1, g: 0.70000005, b: 0.25, a: 1}
 --- !u!4 &2074550858

@@ -52,6 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef658571773b5f4fa410af729133f83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  singleBurstWave: {fileID: 1696421097407864, guid: 8f3c1f677bff3474fad3de084b7d20cb,
+    type: 2}
   objectsForSpawn:
   - {fileID: 1841427381317070, guid: 874e0428c8c20d64ab0997271c0ce5e8, type: 2}
   - {fileID: 1887898526878642, guid: 0f3297dc061f6a5449d443292b399cd6, type: 2}
@@ -73,3 +75,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subscribedEventNames:
   - CometDeath
+  - RightMouseUp

@@ -9,7 +9,7 @@ public class Barrier : MonoBehaviour {
     [SerializeField]
     private bool isDeathTouchEnable;
     [SerializeField]
-    private Renderer renderer;
+    private Renderer render;
     [SerializeField]
     private Color commonColor;
     [SerializeField]
@@ -20,9 +20,9 @@ public class Barrier : MonoBehaviour {
         set {
             isDeathTouchEnable = value;
             if (isDeathTouchEnable) {
-                renderer.material.color = deathTouchColor;
+                render.material.color = deathTouchColor;
             } else {
-                renderer.material.color = commonColor;
+                render.material.color = commonColor;
             }
         }
         get { return isDeathTouchEnable; }
@@ -33,17 +33,17 @@ public class Barrier : MonoBehaviour {
     delegate void EventHandler();
     private Dictionary<string, EventHandler> eventHandlers;
 
-    private Collider2D collider2D;
+    private Collider2D col2D;
 
     private void Start ()
     {
         eventBus = FindObjectOfType<EventBus>();
-        collider2D = GetComponent<Collider2D>();
+        col2D = GetComponent<Collider2D>();
         dispatcher = GetComponent<Dispatcher>();
         if (isDeathTouchEnable) {
-            renderer.material.color = deathTouchColor;
+            render.material.color = deathTouchColor;
         } else {
-            renderer.material.color = commonColor;
+            render.material.color = commonColor;
         }
         InitEventHandlers();
     }
@@ -69,12 +69,12 @@ public class Barrier : MonoBehaviour {
 
     private void OnWentThrowBarrier()
     {
-        collider2D.isTrigger = false;
+        col2D.isTrigger = false;
     }
 
     private void OnPlayerTurn()
     {
-        collider2D.isTrigger = true;
+        col2D.isTrigger = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

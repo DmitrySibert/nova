@@ -86,7 +86,7 @@ public class GameState : MonoBehaviour {
     {
         isPlayerTurnTimerOn = true;
         StopCoroutine(playerTurn);
-        playerTurn = PlayerTurn(1f);
+        playerTurn = PlayerTurn(2f);
         StartCoroutine(playerTurn);
     }
 
@@ -112,5 +112,6 @@ public class GameState : MonoBehaviour {
         curScores += scoreCalculator.End();
         SendScoresUpdatedMsg();
         scoreCalculator.Start();
+        isPlayerTurnTimerOn = false;
     }
 }

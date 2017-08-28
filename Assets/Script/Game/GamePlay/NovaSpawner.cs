@@ -8,6 +8,8 @@ namespace GamePlay
 
     public class NovaSpawner : MonoBehaviour {
 
+
+        public GameObject singleBurstWave;
         [SerializeField]
         private GameObject[] objectsForSpawn;
         [SerializeField]
@@ -55,11 +57,18 @@ namespace GamePlay
                 Spawn(evt.Data.Get<Vector3>("position"), nextSpawn);
                 nextSpawn = GetNextSpawn();
             }
+            if (evt.Name.Equals("RightMouseUp")) {
+                Vector3 vec = new Vector3(evt.Data.Get<Vector3>("clickPoint").x, evt.Data.Get<Vector3>("clickPoint").y, 0);
+                GameObject burstWave = Spawn(vec, singleBurstWave);
+                LimitedSizeExtend extend = burstWave.gameObject.AddComponent<LimitedSizeExtend>();
+                extend.limit = new Vector3(20,20,20);
+                extend.extendFreqSec = 2;
+            }
         }
 
-        private void Spawn(Vector3 position, GameObject go)
+        private GameObject Spawn(Vector3 position, GameObject go)
         {
-            Instantiate<GameObject>(go, position, Quaternion.identity);
+            return Instantiate<GameObject>(go, position, Quaternion.identity);
         }
     }
 }

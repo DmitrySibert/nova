@@ -9,13 +9,14 @@ public class UniformSizeExtension2D : MonoBehaviour {
     private float scalePerSecond;
 
     private Transform trans;
+    private Vector3 prevScale;
 
-	void Start ()
+	void Start()
     {
         trans = gameObject.GetComponent<Transform>();
     }
-	
-	void Update ()
+
+    private void FixedUpdate()
     {
         Extend();
     }
@@ -23,14 +24,32 @@ public class UniformSizeExtension2D : MonoBehaviour {
     private void Extend()
     {
         trans.localScale = new Vector3(
-            trans.localScale.x + scalePerSecond * Time.deltaTime,
-            trans.localScale.y + scalePerSecond * Time.deltaTime,
+            trans.localScale.x + scalePerSecond * Time.fixedDeltaTime,
+            trans.localScale.y + scalePerSecond * Time.fixedDeltaTime,
             trans.localScale.z
         );
     }
 
+    private void StopExtending()
+    {
+        trans.localScale = new Vector3(
+            trans.localScale.x - scalePerSecond * Time.fixedDeltaTime,
+            trans.localScale.y - scalePerSecond * Time.fixedDeltaTime,
+            trans.localScale.z
+        );
+        enabled = false;
+        Destroy(this);
+    }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
-        Destroy(this);
+        StopExtending();
+        Debug.Log("Enter2D");
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        StopExtending();
+        Debug.Log("Stay2D");
     }
 }

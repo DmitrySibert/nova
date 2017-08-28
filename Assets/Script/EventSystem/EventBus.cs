@@ -27,20 +27,17 @@ public class EventBus : MonoBehaviour {
 
     private void Update()
     {
-        while (m_events.Count != 0)
-        {
+        while (m_events.Count != 0) {
             Event evt = m_events.Dequeue();
             List<EventReceiver> evtRcvrs;
             bool res = m_receivers.TryGetValue(evt.Name, out evtRcvrs);
-            if (res)
-            {
+            if (res) {
                 foreach (EventReceiver evtRec in evtRcvrs)
                 {
                     evtRec.Receive(evt);
                 }
             }
-            else
-            {
+            else {
                 Debug.LogWarning("Trigged event without receivers: " + evt.Name);
             }
         }
@@ -64,7 +61,7 @@ public class EventBus : MonoBehaviour {
         List<EventReceiver> evtRcvrs;
         bool res = m_receivers.TryGetValue(evtType, out evtRcvrs);
         if (res) {
-            bool k = evtRcvrs.Remove(evtRec);
+            evtRcvrs.Remove(evtRec);
         }
     }
 

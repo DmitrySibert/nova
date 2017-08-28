@@ -24,7 +24,7 @@ public class PcController : MonoBehaviour {
         if (Input.GetMouseButtonUp(1)) {
             Data data = new Data();
             data["clickPoint"] = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            eventBus.TriggerEvent(new Event("RightMouseUp"));
+            eventBus.TriggerEvent(new Event("RightMouseUp", data));
         }
         if (Input.GetKeyUp("space")) {
             eventBus.TriggerEvent(new Event("SpaceUp"));
