@@ -22,11 +22,14 @@ public class BarrierController : MonoBehaviour {
     {
         Event evt = dispatcher.ReceiveEvent();
         if (evt.Name.Equals("SpawnerChoosen")) {
+            prevBarrierIdx = evt.Data.Get<int>("PrevSpawnerNumber");
+            int curBarrierIdx = evt.Data.Get<int>("CurrentSpawnerNumber");
+            if (curBarrierIdx == prevBarrierIdx) {
+                return;
+            }
             foreach (Barrier barrier in barriers) {
                 barrier.IsDeathTouchEnable = false;
             }
-            prevBarrierIdx = evt.Data.Get<int>("PrevSpawnerNumber");
-            int curBarrierIdx = evt.Data.Get<int>("CurrentSpawnerNumber");
             barriers[prevBarrierIdx].IsDeathTouchEnable = true;
             barriers[curBarrierIdx].IsDeathTouchEnable = true;
             turnsCount = 2;
