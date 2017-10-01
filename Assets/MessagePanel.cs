@@ -8,6 +8,8 @@ public class MessagePanel : MonoBehaviour {
     [SerializeField]
     private Text messageText;
     [SerializeField]
+    private Image messageBackground;
+    [SerializeField]
     private float textAlphaTransSec;
     private IEnumerator textAlphaTransCoroutine;
 
@@ -72,6 +74,7 @@ public class MessagePanel : MonoBehaviour {
             }    
             Color newColor = new Color(text.color.r, text.color.g, text.color.b, newAlpha);
             text.color = newColor;
+            messageBackground.color = newColor;
             yield return null;
         }
     }
@@ -90,6 +93,7 @@ public class MessagePanel : MonoBehaviour {
             }
             Color newColor = new Color(text.color.r, text.color.g, text.color.b, newAlpha);
             text.color = newColor;
+            messageBackground.color = newColor;
             yield return null;
         }
     }
