@@ -44,12 +44,6 @@ public class UniformSizeExtension2D : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D col)
     {
         StopExtending();
-        Debug.Log("Enter2D");
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        StopExtending();
-        Debug.Log("Stay2D");
+        FindObjectOfType<EventBus>().TriggerEvent(new Event("SizeExtensionEnd"));
     }
 }

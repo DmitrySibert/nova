@@ -15,4 +15,9 @@ public class SingleBurstWave : MonoBehaviour {
             damageable.DealDamage(damage);
         }
     }
+
+    private void OnDestroy()
+    {
+        FindObjectOfType<EventBus>().TriggerEvent(new Event("SingleBurstWaveDestroy"));
+    }
 }

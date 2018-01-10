@@ -41,6 +41,7 @@ public class Wormhole : MonoBehaviour {
 
     public void SpawnComet(Vector2 dirPoint)
     {
+        FindObjectOfType<EventBus>().TriggerEvent(new Event("CometLaunch"));
         Vector2 spawnPoint = m_spawnPoint.position;
         GameObject comet = Instantiate<GameObject>(m_spawnObject, spawnPoint, Quaternion.identity);
         Rigidbody2D cometRb = comet.GetComponent<Rigidbody2D>();

@@ -10,6 +10,11 @@ public class EventReceiver {
         m_events = new Queue<Event>();
     }
 
+    public bool IsEmpty()
+    {
+        return m_events.Count == 0;
+    }
+
     public void Receive(Event e)
     {
         m_events.Enqueue(e);

@@ -34,6 +34,11 @@ public class Dispatcher : MonoBehaviour
         }
     }
 
+    public bool IsEmpty()
+    {
+        return eventReceiver.IsEmpty();
+    }
+
     public Event ReceiveEvent()
     {
         return eventReceiver.Get();
