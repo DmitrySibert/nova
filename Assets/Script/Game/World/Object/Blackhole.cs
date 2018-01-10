@@ -15,6 +15,7 @@ public class Blackhole : MonoBehaviour {
 
     private void Start()
     {
+        FindObjectOfType<EventBus>().TriggerEvent(new Event("BlackholeBirth"));
         trans = GetComponent<Transform>();
         novas = new LinkedList<SuperNova>();
         isSwallowingProceed = false;
