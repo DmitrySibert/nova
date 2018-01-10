@@ -34,8 +34,10 @@ namespace Assets.Script.Game.GamePlay
             closeEvents.Add("SizeExtensionEnd");
             closeEvents.Add("BlackholeDeath");
             closeEvents.Add("SingleBurstWaveDestroy");
+            closeEvents.Add("EndSession");
 
             MarkCloseEventForOpen("CometLaunch", "SizeExtensionEnd");
+            MarkCloseEventForOpen("CometLaunch", "EndSession");
             MarkCloseEventForOpen("SupernovaDeath", "SingleBurstWaveDestroy");
             MarkCloseEventForOpen("BlackholeBirth", "BlackholeDeath");
         }
@@ -59,6 +61,7 @@ namespace Assets.Script.Game.GamePlay
             eventHandlers["SizeExtensionEnd"] = () => { ApplyEvent("SizeExtensionEnd"); };
             eventHandlers["BlackholeDeath"] = () => { ApplyEvent("BlackholeDeath"); };
             eventHandlers["SingleBurstWaveDestroy"] = () => { ApplyEvent("SingleBurstWaveDestroy"); };
+            eventHandlers["EndSession"] = () => { ApplyEvent("EndSession"); };
         }
 
         private void DeactivateChecking()
@@ -68,6 +71,7 @@ namespace Assets.Script.Game.GamePlay
             eventHandlers["SizeExtensionEnd"] = () => { };
             eventHandlers["BlackholeDeath"] = () => { };
             eventHandlers["SingleBurstWaveDestroy"] = () => { };
+            eventHandlers["EndSession"] = () => { };
         }
 
         private void Update()

@@ -59,6 +59,7 @@ MonoBehaviour:
   - SizeExtensionEnd
   - BlackholeDeath
   - SingleBurstWaveDestroy
+  - EndSession
 --- !u!114 &114678367125627568
 MonoBehaviour:
   m_ObjectHideFlags: 1
