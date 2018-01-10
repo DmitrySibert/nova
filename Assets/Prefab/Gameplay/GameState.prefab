@@ -67,10 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subscribedEventNames:
-  - SupernovaBirth
-  - SupernovaDeath
-  - BlackholeDeath
-  - PulsarBirth
   - DeathBarrierTouch
   - LeftMouseUp
   - EventCheckerEmpty
+  - SupernovaDeath

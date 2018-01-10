@@ -40,26 +40,29 @@ public class GameState : MonoBehaviour {
 
     private void InitEventHandlers()
     {
-        eventHandlers["NullEvent"] = (data) => { };
+        eventHandlers["SupernovaDeath"] = OnSupernovaDeath;
         eventHandlers["LeftMouseUp"] = OnLeftMouseUp;
-        eventHandlers["SupernovaBirth"] = (data) => { };
-        eventHandlers["SupernovaDeath"] = (data) => { };
-        eventHandlers["BlackholeDeath"] = (data) => { };
-        eventHandlers["PulsarBirth"] = (data) => { };
         eventHandlers["DeathBarrierTouch"] = OnDeathBarrierTouch;
         eventHandlers["EventCheckerEmpty"] = OnEventCheckerEmpty;
     }
 	
 	private void Update ()
     {
-        Event evt = dispatcher.ReceiveEvent();
-        eventHandlers[evt.Name].Invoke(evt.Data);
+        if (!dispatcher.IsEmpty()) {
+            Event evt = dispatcher.ReceiveEvent();
+            eventHandlers[evt.Name].Invoke(evt.Data);
+        }
     }
 
     private void OnLeftMouseUp(Data data)
     {
         eventBus.TriggerEvent(new Event("PlayerTurnEnd"));
         eventHandlers["LeftMouseUp"] = (dataParam) => { };
+    }
+
+    private void OnSupernovaDeath(Data data)
+    {
+        scoreCalculator.AddScores(singleScoreVal);
     }
 
     private void OnDeathBarrierTouch(Data data)

@@ -8,7 +8,6 @@ namespace GamePlay
 
     public class NovaSpawner : MonoBehaviour {
 
-
         public GameObject singleBurstWave;
         [SerializeField]
         private GameObject[] objectsForSpawn;
