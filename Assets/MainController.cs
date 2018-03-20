@@ -31,18 +31,20 @@ public class MainController : MonoBehaviour {
     private void InitEventHandlers()
     {
         eventHandlers = new Dictionary<string, EventHandler>();
-        eventHandlers["NullEvent"] = () => { };
         eventHandlers["StartButtonClicked"] = OnStartButtonClicked;
         eventHandlers["HelpButtonClicked"] = OnHelpButtonClicked;
         eventHandlers["ExitButtonClicked"] = OnExitButtonClicked;
         eventHandlers["GameOver"] = OnGameOver;
+        eventHandlers["LeftMouseUp"] = () => { };
     }
 
 
     private void Update ()
     {
-        Event evt = dispatcher.ReceiveEvent();
-        eventHandlers[evt.Name].Invoke();
+        if (!dispatcher.IsEmpty()) {
+            Event evt = dispatcher.ReceiveEvent();
+            eventHandlers[evt.Name].Invoke();
+        }
 	}
 
     private void OnStartButtonClicked()
@@ -62,6 +64,12 @@ public class MainController : MonoBehaviour {
 
     private void OnGameOver()
     {
+        eventHandlers["LeftMouseUp"] = LoadMainMenu;
+    }
+
+    private void LoadMainMenu()
+    {
+        eventHandlers["LeftMouseUp"] = () => { };
         SceneManager.LoadScene("MainMenu");
     }
 }

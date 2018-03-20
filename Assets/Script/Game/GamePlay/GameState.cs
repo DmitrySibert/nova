@@ -43,7 +43,7 @@ public class GameState : MonoBehaviour {
         eventHandlers["SupernovaDeath"] = OnSupernovaDeath;
         eventHandlers["LeftMouseUp"] = OnLeftMouseUp;
         eventHandlers["DeathBarrierTouch"] = OnDeathBarrierTouch;
-        eventHandlers["EventCheckerEmpty"] = OnEventCheckerEmpty;
+        eventHandlers["EventCheckerEmpty"] = StartPlayerTurn;
     }
 	
 	private void Update ()
@@ -67,9 +67,12 @@ public class GameState : MonoBehaviour {
 
     private void OnDeathBarrierTouch(Data data)
     {
-        Data gameOverData = new Data();
-        gameOverData["Scores"] = curScores;
-        eventBus.TriggerEvent(new Event("GameOver", gameOverData));
+        eventHandlers["EventCheckerEmpty"] = InitializeGameOver;
+        eventBus.TriggerEvent(new Event("EndSession"));
+        GameObject cometGo = FindObjectOfType<Comet>().gameObject;
+        if(cometGo != null) {
+            Destroy(cometGo);
+        }
     }
 
     private void SendScoresUpdatedMsg()
@@ -88,8 +91,21 @@ public class GameState : MonoBehaviour {
         scoreCalculator.Start();
     }
 
-    private void OnEventCheckerEmpty(Data data)
+    private void StartPlayerTurn(Data data)
     {
         PlayerTurn();
+    }
+
+    private void InitializeGameOver(Data data)
+    {
+        curScores += scoreCalculator.End();
+        SendScoresUpdatedMsg();
+        eventHandlers["SupernovaDeath"] = (dataParam) => { };
+        eventHandlers["LeftMouseUp"] = (dataParam) => { };
+        eventHandlers["DeathBarrierTouch"] = (dataParam) => { };
+        eventHandlers["EventCheckerEmpty"] = (dataParam) => { };
+        Data gameOverData = new Data();
+        gameOverData["Scores"] = curScores;
+        eventBus.TriggerEvent(new Event("GameOver", gameOverData));
     }
 }

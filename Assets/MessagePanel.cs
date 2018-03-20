@@ -39,8 +39,10 @@ public class MessagePanel : MonoBehaviour {
         eventHandlers["SpawnerChoosen"] = (data) => {
             ShadeText(0f);
         };
-        eventHandlers["GameOver"] = (data) => { SetText("Game over"); };
-        eventHandlers["NullEvent"] = (data) => { };
+        eventHandlers["GameOver"] = (data) => {
+            SetText("Game over. Your scores: " + data.Get<float>("Scores"));
+            ShowText(0f);
+        };
     }
 
     private void SetText(string text)
@@ -100,7 +102,9 @@ public class MessagePanel : MonoBehaviour {
 
     private void Update ()
     {
-        Event evt = dispatcher.ReceiveEvent();
-        eventHandlers[evt.Name].Invoke(evt.Data);
+        if (!dispatcher.IsEmpty()) {
+            Event evt = dispatcher.ReceiveEvent();
+            eventHandlers[evt.Name].Invoke(evt.Data);
+        }
 	}
 }
