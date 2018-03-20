@@ -33,4 +33,16 @@ public class Event {
     {
         return NullEvent.Instance();
     }
+
+    public override bool Equals(object obj)
+    {
+        var @event = obj as Event;
+        return @event != null &&
+               name == @event.name;
+    }
+
+    public override int GetHashCode()
+    {
+        return 363513814 + EqualityComparer<string>.Default.GetHashCode(name);
+    }
 }

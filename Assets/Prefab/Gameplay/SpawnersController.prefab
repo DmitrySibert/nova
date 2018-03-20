@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4504775174124294}
   - component: {fileID: 114029366264027056}
   - component: {fileID: 114658371586614610}
+  - component: {fileID: 95787540583257554}
   m_Layer: 0
   m_Name: SpawnersController
   m_TagString: Untagged
@@ -41,6 +42,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95787540583257554
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1615942522551550}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0efb66e589c274145a9a71ce87b98fc4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114029366264027056
 MonoBehaviour:
   m_ObjectHideFlags: 1
