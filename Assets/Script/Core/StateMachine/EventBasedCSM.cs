@@ -1,9 +1,10 @@
 ﻿namespace Core.StateMachine
 {
-    public class EventBasedCSM : CommonStateMachine<int, Event>
+    public class EventBasedCSM<Target> : CommonStateMachine<Target, int, Event>
     {
-        public EventBasedCSM(IState<Event> initialState) : base(initialState)
+        public EventBasedCSM(Target target, AState<Target, Event> initialState) : base(target, initialState)
         {
         }
     }
 }
+

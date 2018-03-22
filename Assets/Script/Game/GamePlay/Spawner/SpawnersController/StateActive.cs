@@ -2,15 +2,8 @@
 
 namespace GamePlay.Spawner.SpawnerController
 {
-    public class StateActive : IState<Event>
+    public class StateActive : AState<SpawnersController, Event>
     {
-        private SpawnersController controller;
-
-        public StateActive(SpawnersController controller)
-        {
-            this.controller = controller;
-        }
-
         public override bool Equals(object obj)
         {
             var active = obj as StateActive;
@@ -23,19 +16,11 @@ namespace GamePlay.Spawner.SpawnerController
             return hash;
         }
 
-        public void OnEnter()
-        {
-        }
-
-        public void OnExit()
-        {
-        }
-
-        public void Update(Event info)
+        public override void Update(SpawnersController target, Event info)
         {
             if (info.Name.Equals("SpaceUp"))
             {
-                controller.StartChoosingSpawner();
+                target.StartChoosingSpawner();
             }
         }
 

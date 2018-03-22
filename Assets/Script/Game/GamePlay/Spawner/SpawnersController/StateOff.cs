@@ -2,7 +2,7 @@
 
 namespace GamePlay.Spawner.SpawnerController
 {
-    public class StateOff : IState<Event>
+    public class StateOff : AState<SpawnersController, Event>
     {
         public override bool Equals(object obj)
         {
@@ -14,18 +14,6 @@ namespace GamePlay.Spawner.SpawnerController
         {
             int hash = this.GetType().GetHashCode();
             return hash;
-        }
-
-        public void OnEnter()
-        {
-        }
-
-        public void OnExit()
-        {
-        }
-
-        public void Update(Event info)
-        {
         }
     }
 }

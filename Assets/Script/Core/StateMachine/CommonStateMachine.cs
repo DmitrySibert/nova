@@ -3,25 +3,27 @@ using Core.Utils;
 
 namespace Core.StateMachine
 {
-    public class CommonStateMachine<Trigger, UpdateInfo> : IStateMachine<IState<UpdateInfo>, Trigger, UpdateInfo>
+    public class CommonStateMachine<Target, Trigger, UpdateInfo> : IStateMachine<AState<Target, UpdateInfo>, Trigger, UpdateInfo>
     {
-        private IDictionary<Tuple<IState<UpdateInfo>, Trigger>, IState<UpdateInfo>> transitionVariants;
-        private IState<UpdateInfo> currentState;
+        private IDictionary<Tuple<AState<Target, UpdateInfo>, Trigger>, AState<Target, UpdateInfo>> m_transitionVariants;
+        private AState<Target, UpdateInfo> m_currentState;
+        private Target m_target;
 
-        public CommonStateMachine(IState<UpdateInfo> initialState)
+        public CommonStateMachine(Target target, AState<Target, UpdateInfo> initialState)
         {
-            currentState = initialState;
-            transitionVariants = new Dictionary<Tuple<IState<UpdateInfo>, Trigger>, IState<UpdateInfo>>();
+            m_target = target;
+            m_currentState = initialState;
+            m_transitionVariants = new Dictionary<Tuple<AState<Target, UpdateInfo>, Trigger>, AState<Target, UpdateInfo>>();
         }
 
-        public bool AddTransition(IState<UpdateInfo> srcState, Trigger trigger, IState<UpdateInfo> dstState)
+        public bool AddTransition(AState<Target, UpdateInfo> srcState, Trigger trigger, AState<Target, UpdateInfo> dstState)
         {
-            var transitionCondition = new Tuple<IState<UpdateInfo>, Trigger>(srcState, trigger);
-            IState<UpdateInfo> state;
-            bool isExists = transitionVariants.TryGetValue(transitionCondition, out state);
+            var transitionCondition = new Tuple<AState<Target, UpdateInfo>, Trigger>(srcState, trigger);
+            AState<Target, UpdateInfo> state;
+            bool isExists = m_transitionVariants.TryGetValue(transitionCondition, out state);
             if (!isExists) 
             {
-                transitionVariants.Add(transitionCondition, dstState);
+                m_transitionVariants.Add(transitionCondition, dstState);
                 return true;
             }
 
@@ -30,20 +32,20 @@ namespace Core.StateMachine
 
         public void ApplyTrigger(Trigger trigger)
         {
-            var transitionCondition = new Tuple<IState<UpdateInfo>, Trigger>(currentState, trigger);
-            IState<UpdateInfo> newState;
-            bool isExists = transitionVariants.TryGetValue(transitionCondition, out newState);
+            var transitionCondition = new Tuple<AState<Target, UpdateInfo>, Trigger>(m_currentState, trigger);
+            AState<Target, UpdateInfo> newState;
+            bool isExists = m_transitionVariants.TryGetValue(transitionCondition, out newState);
             if (isExists) 
             {
-                currentState.OnExit();
-                currentState = newState;
-                currentState.OnEnter();
+                m_currentState.OnExit(m_target);
+                m_currentState = newState;
+                m_currentState.OnEnter(m_target);
             }
         }
 
         public void UpdateCurrentState(UpdateInfo info)
         {
-            currentState.Update(info);
+            m_currentState.Update(m_target, info);
         }
     }
 }

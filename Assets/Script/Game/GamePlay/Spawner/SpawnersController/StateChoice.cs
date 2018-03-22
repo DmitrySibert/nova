@@ -2,15 +2,8 @@
 
 namespace GamePlay.Spawner.SpawnerController
 {
-    public class StateChoice : IState<Event>
+    public class StateChoice : AState<SpawnersController, Event>
     {
-        private SpawnersController controller;
-
-        public StateChoice(SpawnersController controller)
-        {
-            this.controller = controller;
-        }
-
         public override bool Equals(object obj)
         {
             var active = obj as StateChoice;
@@ -23,24 +16,21 @@ namespace GamePlay.Spawner.SpawnerController
             return hash;
         }
 
-        public void OnEnter()
+
+        public override void OnExit(SpawnersController target)
         {
+            target.CommitSpawnerPosition();
         }
 
-        public void OnExit()
-        {
-            controller.CommitSpawnerPosition();
-        }
-
-        public void Update(Event info)
+        public override void Update(SpawnersController target, Event info)
         {
             if (info.Name.Equals("RightArrowUp"))
             {
-                controller.SetNextSpawner();
+                target.SetNextSpawner();
             }
             if (info.Name.Equals("LeftArrowUp"))
             {
-                controller.SetPrevSpawner();
+                target.SetPrevSpawner();
             }
         }
     }

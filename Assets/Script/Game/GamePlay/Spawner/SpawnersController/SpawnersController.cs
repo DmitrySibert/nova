@@ -13,7 +13,7 @@ namespace GamePlay.Spawner.SpawnerController
         delegate void EventHandler();
         private Dictionary<string, EventHandler> eventHandlers;
 
-        private EventBasedCSM stateMachine;
+        private EventBasedCSM<SpawnersController> stateMachine;
 
         private int curActiveSpawnerIdx;
         private int lastActiveSpawnerIdx;
@@ -27,11 +27,11 @@ namespace GamePlay.Spawner.SpawnerController
             curActiveSpawnerIdx = 0;
             spawners[curActiveSpawnerIdx].SetActive(true);
 
-            IState<Event> stateActive = new StateActive(this);
-            IState<Event> stateChoice = new StateChoice(this);
-            IState<Event> stateOff = new StateOff();
+            var stateActive = new StateActive();
+            var stateChoice = new StateChoice();
+            var stateOff = new StateOff();
 
-            stateMachine = new EventBasedCSM(stateOff);
+            stateMachine = new EventBasedCSM<SpawnersController>(this, stateOff);
             int hash = "PlayerTurn".GetHashCode();
             stateMachine.AddTransition(stateOff, "PlayerTurn".GetHashCode(), stateActive);
             stateMachine.AddTransition(stateActive, "SpaceUp".GetHashCode(), stateChoice);
