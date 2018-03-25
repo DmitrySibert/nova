@@ -1,8 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Assets.Script.Game.GamePlay.Score;
 using Assets.Script.Game.GamePlay;
+using Core.StateMachine;
+using GamePlay.Spawner.SpawnerController;
+using GamePlay.Spawner.SpawnerController.State.Builder;
 
 public class GameState : MonoBehaviour {
 
@@ -24,7 +26,7 @@ public class GameState : MonoBehaviour {
     [SerializeField]
     private TurnEventChecker turnEventChecker;
 
-	private void Start ()
+    private void Start()
     {
         dispatcher = gameObject.GetComponent<Dispatcher>();
         eventHandlers = new Dictionary<string, EventHandler>();
@@ -36,7 +38,6 @@ public class GameState : MonoBehaviour {
         scoreCalculator.Start();
         turnEventChecker = Instantiate<TurnEventChecker>(turnEventChecker);
     }
-
 
     private void InitEventHandlers()
     {
