@@ -13,13 +13,13 @@ namespace GamePlay.Spawner.SpawnerController
         public StateFactoryMono m_stateFactory;
 
         private Dispatcher dispatcher;
-        delegate void EventHandler();
-        private Dictionary<string, EventHandler> eventHandlers;
 
         private EventBasedCSM<SpawnersController> stateMachine;
 
         private int curActiveSpawnerIdx;
         private int lastActiveSpawnerIdx;
+
+        private bool m_isPaused;
 
         void Start()
         {
@@ -44,8 +44,13 @@ namespace GamePlay.Spawner.SpawnerController
 
         private void Update()
         {
-            if (!dispatcher.IsEmpty()) {
+            if (!dispatcher.IsEmpty())
+            {
                 Event evt = dispatcher.ReceiveEvent();
+                if (m_isPaused && !evt.Name.Equals("Unpause"))
+                {
+                    return;
+                }
                 stateMachine.UpdateCurrentState(evt);
                 stateMachine.ApplyTrigger(evt.Name.GetHashCode());
             }
@@ -85,6 +90,16 @@ namespace GamePlay.Spawner.SpawnerController
             data["PrevSpawnerNumber"] = lastActiveSpawnerIdx;
             data["CurrentSpawnerNumber"] = curActiveSpawnerIdx;
             FindObjectOfType<EventBus>().TriggerEvent(new Event("SpawnerChoosen", data));
+        }
+
+        private void OnPause(Data data)
+        {
+            m_isPaused = true;
+        }
+
+        private void OnUnpause(Data data)
+        {
+            m_isPaused = false;
         }
     }
 }
