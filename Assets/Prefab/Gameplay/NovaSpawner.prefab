@@ -76,3 +76,5 @@ MonoBehaviour:
   subscribedEventNames:
   - CometDeath
   - RightMouseUp
+  - Pause
+  - Unpause

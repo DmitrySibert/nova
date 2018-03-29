@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Core.StateMachine;
+using Assets.Script.Core;
 
 namespace GamePlay.Spawner.SpawnerController
 {
@@ -9,14 +10,16 @@ namespace GamePlay.Spawner.SpawnerController
         [SerializeField]
         private GameObject[] spawners;
 
+        public StateFactoryMono m_stateFactory;
+
         private Dispatcher dispatcher;
-        delegate void EventHandler();
-        private Dictionary<string, EventHandler> eventHandlers;
 
         private EventBasedCSM<SpawnersController> stateMachine;
 
         private int curActiveSpawnerIdx;
         private int lastActiveSpawnerIdx;
+
+        private bool m_isPaused;
 
         void Start()
         {
@@ -27,12 +30,11 @@ namespace GamePlay.Spawner.SpawnerController
             curActiveSpawnerIdx = 0;
             spawners[curActiveSpawnerIdx].SetActive(true);
 
-            var stateActive = new StateActive();
-            var stateChoice = new StateChoice();
-            var stateOff = new StateOff();
+            var stateActive = m_stateFactory.CreateState<AState<SpawnersController, Event>>("Active");
+            var stateChoice = m_stateFactory.CreateState<AState<SpawnersController, Event>>("Choice");
+            var stateOff = m_stateFactory.CreateState<AState<SpawnersController, Event>>("Off");
 
             stateMachine = new EventBasedCSM<SpawnersController>(this, stateOff);
-            int hash = "PlayerTurn".GetHashCode();
             stateMachine.AddTransition(stateOff, "PlayerTurn".GetHashCode(), stateActive);
             stateMachine.AddTransition(stateActive, "SpaceUp".GetHashCode(), stateChoice);
             stateMachine.AddTransition(stateChoice, "SpaceUp".GetHashCode(), stateOff);
@@ -42,8 +44,13 @@ namespace GamePlay.Spawner.SpawnerController
 
         private void Update()
         {
-            if (!dispatcher.IsEmpty()) {
+            if (!dispatcher.IsEmpty())
+            {
                 Event evt = dispatcher.ReceiveEvent();
+                if (m_isPaused && !evt.Name.Equals("Unpause"))
+                {
+                    return;
+                }
                 stateMachine.UpdateCurrentState(evt);
                 stateMachine.ApplyTrigger(evt.Name.GetHashCode());
             }
@@ -83,6 +90,16 @@ namespace GamePlay.Spawner.SpawnerController
             data["PrevSpawnerNumber"] = lastActiveSpawnerIdx;
             data["CurrentSpawnerNumber"] = curActiveSpawnerIdx;
             FindObjectOfType<EventBus>().TriggerEvent(new Event("SpawnerChoosen", data));
+        }
+
+        private void OnPause(Data data)
+        {
+            m_isPaused = true;
+        }
+
+        private void OnUnpause(Data data)
+        {
+            m_isPaused = false;
         }
     }
 }

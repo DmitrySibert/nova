@@ -1,8 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Assets.Script.Game.GamePlay.Score;
 using Assets.Script.Game.GamePlay;
+using Core.StateMachine;
+using GamePlay.Spawner.SpawnerController;
+using GamePlay.Spawner.SpawnerController.State.Builder;
 
 public class GameState : MonoBehaviour {
 
@@ -24,7 +26,10 @@ public class GameState : MonoBehaviour {
     [SerializeField]
     private TurnEventChecker turnEventChecker;
 
-	private void Start ()
+    private bool m_isPaused;
+    private float m_prevTimeScale;
+
+    private void Start()
     {
         dispatcher = gameObject.GetComponent<Dispatcher>();
         eventHandlers = new Dictionary<string, EventHandler>();
@@ -35,8 +40,9 @@ public class GameState : MonoBehaviour {
         SendScoresUpdatedMsg();
         scoreCalculator.Start();
         turnEventChecker = Instantiate<TurnEventChecker>(turnEventChecker);
+        m_isPaused = false;
+        m_prevTimeScale = Time.timeScale;
     }
-
 
     private void InitEventHandlers()
     {
@@ -44,12 +50,17 @@ public class GameState : MonoBehaviour {
         eventHandlers["LeftMouseUp"] = OnLeftMouseUp;
         eventHandlers["DeathBarrierTouch"] = OnDeathBarrierTouch;
         eventHandlers["EventCheckerEmpty"] = StartPlayerTurn;
+        eventHandlers["EscapeUp"] = OnEscapeUp;
     }
 	
 	private void Update ()
     {
         if (!dispatcher.IsEmpty()) {
             Event evt = dispatcher.ReceiveEvent();
+            if (m_isPaused && !evt.Name.Equals("EscapeUp"))
+            {
+                return;
+            }  
             eventHandlers[evt.Name].Invoke(evt.Data);
         }
     }
@@ -107,5 +118,22 @@ public class GameState : MonoBehaviour {
         Data gameOverData = new Data();
         gameOverData["Scores"] = curScores;
         eventBus.TriggerEvent(new Event("GameOver", gameOverData));
+    }
+
+    private void OnEscapeUp(Data data)
+    {
+        if (!m_isPaused)
+        {
+            m_isPaused = true;
+            eventBus.TriggerEvent(new Event("Pause"));
+            m_prevTimeScale = Time.timeScale;
+            Time.timeScale = 0;
+        } 
+        else
+        {
+            m_isPaused = false;
+            eventBus.TriggerEvent(new Event("Unpause"));
+            Time.timeScale = m_prevTimeScale;
+        }
     }
 }
