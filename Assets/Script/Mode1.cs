@@ -7,8 +7,11 @@ public class Mode1 : MonoBehaviour {
     private GameState gameStatePref;
     [SerializeField]
     private PcController pcControllerPref;
+    [SerializeField]
+    private GameObject GameMenu;
     
-    private void Start () {
+    private void Start ()
+    {
         GameState gameState = Instantiate<GameState>(gameStatePref);
         gameState.ScoreCalculator = new ComboScoreCalculator();
         PcController pcCont = Instantiate<PcController>(pcControllerPref);

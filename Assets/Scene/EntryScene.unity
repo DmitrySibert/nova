@@ -171,6 +171,8 @@ MonoBehaviour:
   - HelpButtonClicked
   - GameOver
   - LeftMouseUp
+  - RestartButtonClicked
+  - ExitMenuClicked
 --- !u!1001 &1025461053
 Prefab:
   m_ObjectHideFlags: 0

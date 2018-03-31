@@ -75,6 +75,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subscribedEventNames:
   - CometDeath
-  - RightMouseUp
-  - Pause
-  - Unpause

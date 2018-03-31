@@ -34,6 +34,8 @@ public class MainController : MonoBehaviour {
         eventHandlers["StartButtonClicked"] = OnStartButtonClicked;
         eventHandlers["HelpButtonClicked"] = OnHelpButtonClicked;
         eventHandlers["ExitButtonClicked"] = OnExitButtonClicked;
+        eventHandlers["RestartButtonClicked"] = OnResturtButtonClicked;
+        eventHandlers["ExitMenuClicked"] = OnExitMenuClicked;
         eventHandlers["GameOver"] = OnGameOver;
         eventHandlers["LeftMouseUp"] = () => { };
     }
@@ -70,6 +72,16 @@ public class MainController : MonoBehaviour {
     private void LoadMainMenu()
     {
         eventHandlers["LeftMouseUp"] = () => { };
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    private void OnResturtButtonClicked()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
+    private void OnExitMenuClicked()
+    {
         SceneManager.LoadScene("MainMenu");
     }
 }

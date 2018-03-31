@@ -75,6 +75,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  m_stateFactory: {fileID: 0}
 --- !u!114 &114658371586614610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,3 +94,5 @@ MonoBehaviour:
   - PlayerTurnEnd
   - LeftArrowUp
   - SpaceUp
+  - Pause
+  - Unpause
