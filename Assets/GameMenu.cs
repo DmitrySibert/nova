@@ -44,11 +44,13 @@ public class GameMenu : MonoBehaviour {
 
     public void OnRestartButton()
     {
+        m_gameMenuCanvas.enabled = false;
         m_eventBus.TriggerEvent(new Event("RestartButtonClicked"));
     }
 
     public void OnExitMenuButton()
     {
+        m_gameMenuCanvas.enabled = false;
         m_eventBus.TriggerEvent(new Event("ExitMenuClicked"));
     }
 }
