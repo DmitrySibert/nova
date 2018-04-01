@@ -136,4 +136,9 @@ public class GameState : MonoBehaviour {
             Time.timeScale = m_prevTimeScale;
         }
     }
+
+    private void OnDestroy()
+    {
+        Time.timeScale = m_prevTimeScale;
+    }
 }

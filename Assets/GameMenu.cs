@@ -9,11 +9,13 @@ public class GameMenu : MonoBehaviour {
 
     private EventBus m_eventBus;
     private Dispatcher m_dispatcher;
+    private Event nextEvent;
 
     private void Start()
     {
         m_eventBus = FindObjectOfType<EventBus>();
         m_dispatcher = GetComponent<Dispatcher>();
+        nextEvent = null;
     }
 
     private void Update()
@@ -30,6 +32,11 @@ public class GameMenu : MonoBehaviour {
                 OnUnpause();
             }
         }
+        if (nextEvent != null)
+        {
+            m_eventBus.TriggerEvent(nextEvent);
+            nextEvent = null;
+        }
     }
 
     private void OnPause()
@@ -45,12 +52,12 @@ public class GameMenu : MonoBehaviour {
     public void OnRestartButton()
     {
         m_gameMenuCanvas.enabled = false;
-        m_eventBus.TriggerEvent(new Event("RestartButtonClicked"));
+        nextEvent = new Event("RestartButtonClicked");
     }
 
     public void OnExitMenuButton()
     {
         m_gameMenuCanvas.enabled = false;
-        m_eventBus.TriggerEvent(new Event("ExitMenuClicked"));
+        nextEvent = new Event("ExitMenuClicked");
     }
 }
